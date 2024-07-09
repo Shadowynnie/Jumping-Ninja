@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Boss
+  - CheckPoint
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Player
+  - Water
+  - UI
+  - Enemies
+  - Bullets
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3381017127
+    locked: 0
+  - name: Tiles
+    uniqueID: 2936967923
+    locked: 0
+  - name: OtherStuff
+    uniqueID: 3065112851
+    locked: 0
+  - name: Characters
+    uniqueID: 187016373
+    locked: 0
+  - name: Coins
+    uniqueID: 2797518151
+    locked: 0
+  - name: Bullets
+    uniqueID: 1389202265
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
