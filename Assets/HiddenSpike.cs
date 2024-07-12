@@ -31,6 +31,16 @@ public class HiddenSpike : MonoBehaviour
         //hitInfo.enabled = false;
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Player player = collision.GetComponent<Player>();
+        if (player != null)
+        {
+            Invoke(nameof(Hide), 2f);
+            Debug.Log("Spike has hid to the ground.");
+        }
+    }
+
     private void Update()
     {
         // Move the spike towards the target position
@@ -47,5 +57,12 @@ public class HiddenSpike : MonoBehaviour
         // Start emerging
         isEmerging = true;
         targetPosition = emergePosition.position;
+    }
+
+    public void Hide() 
+    {
+        // Start hiding
+        isEmerging = false;
+        targetPosition = hiddenPosition.position;
     }
 }

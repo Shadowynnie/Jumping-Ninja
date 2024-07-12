@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -10,13 +11,16 @@ public class Boss : MonoBehaviour
     public bool isFlipped = false;
     public int maxHealth = 1000;
     private int currentHealth;
+    public static float movementSpeed = 1f;
 
     public BossHealthBar bossHealthBar;
     //public Canvas bossHPcanvas;
+    Victory victory;
 
     private void Start()
     {
         bossAttack = GetComponent<BossAttack>();
+        victory = FindAnyObjectByType<Victory>();
         currentHealth = maxHealth;
         bossHealthBar.SetMaxHealth(maxHealth);
     }
@@ -53,6 +57,7 @@ public class Boss : MonoBehaviour
 
         if (currentHealth <= 0) // If enemy's health drops to 0 or less, dies...
         {
+            victory.ShowVictoryBanner();
             Die();
         }
     }
@@ -62,7 +67,7 @@ public class Boss : MonoBehaviour
     {
         // Creates an instance of a death effect
         Instantiate(deathEffect, transform.position, Quaternion.identity);
-
+        Debug.Log("Boss dies...");
         // Destroy the enemy game object (enemy disappears)
         Destroy(gameObject);
     }

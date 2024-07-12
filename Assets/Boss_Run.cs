@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Boss_Run : StateMachineBehaviour
 {
-    public float speed = 2.5f;
+    //public float speed = 2.5f;
     public float attackRange = 3f;
     public float shootInterval = 5f; // Time interval for shooting Rasengan
 
@@ -10,7 +10,7 @@ public class Boss_Run : StateMachineBehaviour
 
     Transform player;
     Rigidbody2D rb;
-    Boss boss;
+    static Boss boss;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -18,6 +18,8 @@ public class Boss_Run : StateMachineBehaviour
         rb = animator.GetComponent<Rigidbody2D>();
         boss = animator.GetComponent<Boss>();
         nextShootTime = Time.time + shootInterval;
+
+        Debug.Log("Boss movement speed: " + Boss.movementSpeed);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,7 +27,7 @@ public class Boss_Run : StateMachineBehaviour
         boss.LookAtPlayer();
 
         Vector2 target = new Vector2(player.position.x, rb.position.y);
-        Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+        Vector2 newPos = Vector2.MoveTowards(rb.position, target, Boss.movementSpeed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
 
         if (Vector2.Distance(player.position, rb.position) <= attackRange)

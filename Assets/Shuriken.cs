@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shuriken : MonoBehaviour
 {
     public float bulletSpeed = 20f;
-    public int bulletDamage = 30;
+    public int bulletDamage = 25;
     public Rigidbody2D rigidBody;
     public GameObject impactEffect;
     // Start is called before the first frame update

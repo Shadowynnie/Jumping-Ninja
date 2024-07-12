@@ -5,6 +5,7 @@ public class BossTrigger : MonoBehaviour
     public GameObject boss; // Reference to the boss game object
     private Animator bossAnimator;
     public Canvas bossHPcanvas;
+    private bool activated = false;
 
     void Start()
     {
@@ -19,16 +20,25 @@ public class BossTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the player enters the trigger area
-        if (other.CompareTag("Player"))
+        if (!activated) 
         {
-            // Activate the boss
-            if (boss != null)
+            Debug.Log("Boss is not activated, activating the boss...");
+            // Check if the player enters the trigger area
+            if (other.CompareTag("Player"))
             {
-                bossHPcanvas.enabled = true;
-                boss.SetActive(true);
-                bossAnimator.SetTrigger("Start");
+                // Activate the boss
+                if (boss != null)
+                {
+                    bossHPcanvas.enabled = true;
+                    boss.SetActive(true);
+                    bossAnimator.SetTrigger("Start");
+                    activated = true;
+                }
             }
+        }
+        else 
+        {
+            Debug.Log("Boss is already activated.");
         }
     }
 }

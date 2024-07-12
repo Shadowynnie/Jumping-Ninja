@@ -28,6 +28,7 @@ public class CheckPoint : MonoBehaviour
                 player.UpdateCheckPoint(respawnPoint.position);
                 animator.SetBool("Checked", isChecked);
                 checkPointCollider.enabled = false;
+                FindObjectOfType<GameManager>().SaveGame(player);
             }
         }
     }

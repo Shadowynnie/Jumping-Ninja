@@ -9,7 +9,7 @@ public class MeleeCombat : MonoBehaviour
     public LayerMask enemyLayers;
 
     public float attackRange = 0.5f;
-    public int weaponDamage = 45;
+    public int weaponDamage = 35;
     public float attackSpeed = 2f;
     private float attackNext = 0f;
 

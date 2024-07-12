@@ -8,16 +8,19 @@ public class Player : MonoBehaviour
     public Animator animator;
     public BoxCollider2D playerBoxCollider;
     public CircleCollider2D playerCircleCollider;
-    public Vector2 checkPointPosition;
-    public Rigidbody2D playerRb;
+    private Vector2 checkPointPosition;
+    //public Rigidbody2D playerRb;
 
     public int maxHealth = 100;
     private int currentHealth;
+    public int level = 1;
 
     public int coinCount = 0;
     public Text coinCountText;
     public int shurikenCount = 0;
     public Text shurikenCountText;
+    public Text alertText;
+    //private int deathCount = 0;
 
     public HealthBar healthBar;
 
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         checkPointPosition = new Vector2(-10,1f);
-        playerRb = GetComponent<Rigidbody2D>();
+        //playerRb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         UpdateCoinUI();
@@ -35,6 +38,10 @@ public class Player : MonoBehaviour
     // The player takes damage
     public void TakeDamage(int damage)
     {
+        if (currentHealth <= 0) // Player cannot take damage if he is dead
+        {
+            return;
+        }
         // Play some damage/hurt player animation
         animator.SetTrigger("IsHurt");
 
@@ -50,18 +57,26 @@ public class Player : MonoBehaviour
     // Dying logic of the player and playing some dying animation
     void Die()
     {
-        // UNUSED - Creates an instance of a death effect
-        //Instantiate(deathEffect, transform.position, Quaternion.identity);
-
-        // UNUSED - Destroy the player game object (player disappears)
-        //Destroy(gameObject);
-        //======================================================================
+        Debug.Log("Died");
 
         // Play some dying animation
         animator.SetBool("Dead", true);
 
         // Show Game over with some menu...
-        //FindObjectOfType<GameManager>().GameOver();
+        // TODO: The Die() function is called more than once when the player is killed, solve it
+        //if(deathCount >= 2) 
+        //{
+        //    alertText.text = "GAME OVER";
+        //    Invoke(nameof(ClearAlertUI),3f);
+        //    FindObjectOfType<GameManager>().GameOver();
+        //}
+        //else 
+        //{
+        //    Invoke("Respawn", 3f);
+        //    deathCount++;
+        //    Debug.Log("DeathCount: " + deathCount);
+        //}
+
         Invoke("Respawn", 3f);
         //StartCoroutine(Respawn(0.5f));
     }
@@ -92,12 +107,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void UpdateCoinUI()
+    public void UpdateCoinUI()
     {
         coinCountText.text = coinCount.ToString();
     }
 
-    private void UpdateShurikenUI() 
+    public void UpdateShurikenUI() 
     {
         shurikenCountText.text = shurikenCount.ToString();
     }
@@ -113,5 +128,23 @@ public class Player : MonoBehaviour
         animator.SetBool("Dead", false);
         currentHealth = maxHealth;
         healthBar.SetHealth(currentHealth);
+    }
+
+    public void ClearAlertUI() 
+    {
+        alertText.text = "";
+    }
+
+    public float[] GetCheckPointPos() 
+    {
+        float[] pos = new float[2];
+        pos[0] = checkPointPosition.x;
+        pos[1] = checkPointPosition.y;
+        return pos;
+    }
+
+    public void SetCheckPointPos(Vector2 pos) 
+    {
+        checkPointPosition = pos;
     }
 }

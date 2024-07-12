@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Boss
   - CheckPoint
+  - VictoryBanner
+  - DeathEffect
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - UI
   - Enemies
   - Bullets
-  - 
-  - 
+  - BossFightPlatforms
+  - Collectibles
   - 
   - 
   - 
@@ -42,6 +44,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 3381017127
+    locked: 0
+  - name: Environments
+    uniqueID: 3729628915
     locked: 0
   - name: Tiles
     uniqueID: 2936967923

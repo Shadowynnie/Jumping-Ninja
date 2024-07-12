@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShurikenCollectible : MonoBehaviour
 {
-    public int shurikensCount = 1;
+    public int shurikensCount = 5;
     private void OnTriggerEnter2D(Collider2D collision)
     {  
         if (collision.CompareTag("Player"))
