@@ -1,3 +1,2 @@
 # Jumping-Ninja
-Semestrálka
-Přejděte na Master branch!
+Semestrálka - Přejděte na Master branch!
